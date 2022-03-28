@@ -1,0 +1,633 @@
+openapi: '3.0.3'
+info: 
+  title: Multi Cloud Architecture Converter  
+  description: Multi Cloud Architecture Converter  
+  version: 0.1.0
+servers:
+  - url: architectureconverter.com/v1
+    description: Dev server version 1.0 
+# security:
+#   - APIKeyTokenAuthOption: []
+#   - OAuthTokenAuthOption: []
+x-amazon-apigateway-api-key-source: "HEADER"
+paths:
+  /liveness:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers 
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    get:
+      summary: The /liveness endpoint indicates the ultumate health of the service during execution, It's a bianry either the service is running or it's in an unrecoverable state
+      description: The /liveness endpoint indicates the ultumate health of the service during execution, It's a bianry either the service is running or it's in an unrecoverable state
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema: {}
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+  /readiness:
+    options:
+      summary: CORS Support 
+      description: The readiness endpoint indicates whether your application is able to serve its fuction or not  
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    get:
+      summary: The readiness endpoint indicates whether your application is able to serve its fuction or not
+      description: The readiness endpoint indicates whether your application is able to serve its fuction or not
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema: {}
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+  /metrics:
+    options:
+      summary: CORS Support 
+      description: Endpoint to expose custom metrics for the service 
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    get:
+      summary: Endpoint to expose custom metrics for the service
+      description: Endpoint to expose custom metrics for the service 
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema: {}
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+  /version:
+    options:
+      summary: CORS Support 
+      description: Return the service name and version 
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    get:
+      summary:  Return the service name and version 
+      description: Return the service name and version 
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema: {}
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+  /auth/signup:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers 
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: Register a user 
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUserRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+  /auth/login:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: User Login 
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginUserRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+  /auth/forgot-password:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: Forgot Password  
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgetPasswordRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+  /auth/reset-password:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers 
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: Reset Password  
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResetPasswordRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+  /auth/account-activation:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: Reset Password  
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountActivationRequest'
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+  /auth/logout:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: User Logout  
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema: {}
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+  /user/profile:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    get:
+      summary: Get User Profile  
+      security:
+        - {} #No security is not expected in this endpoint
+      requestBody:
+        description: Optional description 
+        required: true 
+        content:
+          application/json:
+            schema: {}
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+  /convert:
+    options:
+      summary: CORS Support 
+      description: Enable CORS by returning correct headers
+      tags:
+      - CORS
+      responses:
+        200:
+          $ref: '#/components/responses/corsResponse'
+        400:
+          $ref: '#/components/responses/corsResponse'
+        500:
+          $ref: '#/components/responses/corsResponse'
+    post:
+      summary: Get User Profile  
+      security:
+        - {} #No security is not expected in this endpoint
+      # parameters:
+      #   - $ref: '#/components/parameters/CloudProviderName'
+      #   - $ref: '#/components/parameters/ArchitectureDiagram'
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object 
+              properties:
+                cloudProviderName: 
+                  type: string 
+                architectureDiagram:
+                  type: string 
+                  format: binary 
+      responses:
+        200:
+          $ref: '#/components/responses/lambdaResponse'
+        400:
+          $ref: '#/components/responses/lambdaResponse'
+        500:
+          $ref: '#/components/responses/500APIError' 
+
+components:
+  schemas:
+    RegisterUserRequest:
+      type: object 
+      properties:
+        username:
+          type: string 
+          description: username of the user 
+        email:
+          type: string 
+          description: email of the user 
+    RegisterUserResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          description: An OpenID token for the new user
+    LoginUserRequest:
+      type: object 
+      properties:
+        username:
+          type: string 
+        password:
+          type: string 
+    LoginUserResponse:
+      type: object 
+      properties:
+        token:
+          type: string 
+          description: token of the user after login
+        identityId:
+          type: string 
+          description: The Id of the user  
+    ForgetPasswordRequest:
+      type: object 
+      properties:
+        email:
+          type: string 
+          description: email to sent password activation link to
+    ResetPasswordRequest:
+      type: object 
+      properties:
+        password:
+          type: string 
+          description: enter new password
+        confirmpassword:
+          type: string 
+          description: reenter new password for confirmation
+    AccountActivationRequest:
+      type: object 
+      properties:
+        token:
+          type: string 
+          description: token of the user after login
+    Empty:
+      title: Empty Schema
+      type: object
+      
+    UserProfile:
+      type: object
+      properties:
+        firstName:
+          type: string 
+        lastName:
+          type: string
+        middleName:
+          type: string 
+        profileImage:
+          type: string 
+        location:
+          type: string 
+        education:
+          type: string 
+        relationshipStatus:
+          type: string
+    DeletedProfile:
+      type: object 
+      properties:
+        status:
+          type: string 
+          description: successful deletion message 
+        userId:
+          type: string 
+          description: Id of the user its profile was deleted 
+    ErrorSchema:
+      type: object 
+      properties:
+        code: 
+          type: number 
+        message:
+          type: string 
+    LambdaResponseSchema:
+      type: object 
+      title: Lambda Invocation Response 
+      required:
+        - statusCode 
+        - body
+      properties:
+        isBase64Encoded:
+          type: boolean 
+          example: false
+        statusCode:
+          type: number 
+          example: 200 
+        body:
+          type: object
+
+  parameters:
+    CloudProviderName:
+      name: cloudProviderName 
+      in: path
+      description: Cloud provider to convert the architecture to
+      required: true
+      schema:
+        type: string
+    ArchitectureDiagram:
+      name: architectureDiagram
+      in: formData 
+      description: Architecture diagram to convert 
+      required: true
+      schema:
+        type: file 
+
+  # securitySchemes:
+  #   APIKeyTokenAuthOption:
+  #     type: apiKey 
+  #     name: Authorization  
+  #     in: header 
+  #     x-amazon-apigateway-authtype: cognito_user_pools
+  #     x-amazon-apigateway-authorizer:
+  #       providerARNs:
+  #       - "${cognito_user_pool_arn}"
+  #       type: cognito_user_pools 
+  #   JWTTokenAuthOption:
+  #     type: http 
+  #     scheme: bearer 
+  #     bearerFormat: JWT 
+  #   OAuthTokenAuthOption:
+  #     type: oauth2
+  #     flows:
+  #       authorizationCode:
+  #         authorizationUrl: https://api.google.token.com
+  #         tokenUrl: https://savecost.ai/api/oauth 
+  #         scopes: {}
+
+  responses:
+    lambdaResponse:
+      description: Lambda responses 
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: string 
+        Access-Control-Allow-Methods:
+          schema:
+            type: string 
+        Access-Control-Allow-Max-Age:
+          schema:
+            type: string 
+        Access-Control-Allow-Headers:
+          schema:
+            type: string 
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LambdaResponseSchema'
+    corsResponse:
+      description: Default response for CORS method 
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: string 
+        Access-Control-Allow-Headers:
+          schema:
+            type: string 
+        Access-Control-Allow-Methods:
+          schema:
+            type: string 
+        Access-Control-Max-Age:
+          schema:
+            type: string
+      content:
+        application/json:
+          schema: 
+            $ref: '#/components/schemas/Empty'
+    404NotFound:
+      description: The specified resource was not found 
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: string 
+        Access-Control-Allow-Methods:
+          schema:
+            type: string 
+        Access-Control-Allow-Max-Age:
+          schema:
+            type: string 
+        Access-Control-Allow-Headers:
+          schema:
+            type: string 
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              statusCode:
+                type: string 
+                example: 404 
+              message: 
+                type: string 
+                example: The Specified resource was not found 
+    500APIError:
+      description: Unexpected Error 
+      headers:
+        Access-Control-Allow-Origin:
+          schema:
+            type: string 
+        Access-Control-Allow-Methods:
+          schema:
+            type: string 
+        Access-Control-Allow-Max-Age:
+          schema:
+            type: string 
+        Access-Control-Allow-Headers:
+          schema:
+            type: string 
+      content:
+        application/json:
+          schema:
+            type: object 
+            properties:
+              statusCode:
+                type: string 
+                example: 500 
+              message:
+                type: string 
+                example: This is an error 

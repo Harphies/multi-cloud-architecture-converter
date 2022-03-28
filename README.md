@@ -12,6 +12,7 @@ Implementation: I'll like this to be implemented in Go as you have capabiliity t
 ## Commands
 
 ```
-go mod init github.com/Harphies/multi-cloud-architecture-converter
+go mod init multi-cloud-architecture-converter
 go mod tidy
+got get github.com/julienschmidt/httprouter
 ```

@@ -1,0 +1,8 @@
+@startuml 
+Architect -> decomposer: Make a post request to upload architecture diagram
+decomposer --> Architect: Architecture decomposed 
+decomposer -> matcher: Find components alternatives
+matcher --> decomposer: All components matched  
+decomposer -> sketcher: Create all architecture diagram for given cloud provider name
+sketcher --> Architect: Recreated and ready to be downloaded 
+@enduml 

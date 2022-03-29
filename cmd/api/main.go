@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"sync"
 
 	"multi-cloud-architecture-converter/internal/jsonlog"
 )
@@ -22,9 +23,11 @@ type config struct {
 	env  string
 }
 
+// application object with object properties
 type application struct {
 	config config
 	logger *jsonlog.Logger
+	wg     sync.WaitGroup
 }
 
 func main() {
@@ -36,10 +39,10 @@ func main() {
 
 	appVersion := flag.Bool("version", false, "Display version and exit")
 
+	flag.Parse()
+
 	// Initilate a logger
 	logger := jsonlog.New(os.Stdout, jsonlog.LevelInfo)
-
-	flag.Parse()
 
 	// check the version
 	if *appVersion {
@@ -51,12 +54,14 @@ func main() {
 	// instantiate the class(application) with the class parameters
 	app := &application{
 		config: cfg,
+		logger: logger,
 	}
 
 	// call the serve methods on the instantiated class
 	err := app.serve()
 	if err != nil {
-		logger.Printfatal(err, nil)
+		logger.PrintFatal(err, nil)
+
 	}
 
 }

@@ -58,9 +58,13 @@ func (l *Logger) PrintInfo(message string, properties map[string]string) {
 }
 
 // Fatal Level
-func (l *Logger) Printfatal(err error, properties map[string]string) {
+func (l *Logger) PrintFatal(err error, properties map[string]string) {
 	l.print(LevelError, err.Error(), properties)
 	os.Exit(1)
+}
+
+func (l *Logger) PrintError(err error, properties map[string]string) {
+	l.print(LevelError, err.Error(), properties)
 }
 
 func (l *Logger) print(level Level, message string, properties map[string]string) (int, error) {
@@ -72,7 +76,7 @@ func (l *Logger) print(level Level, message string, properties map[string]string
 	aux := struct {
 		Level      string            `json:"level"`
 		Time       string            `json:"time"`
-		Message    string            `json:message`
+		Message    string            `json:"message"`
 		Properties map[string]string `json:"properties,omitempty"`
 		Trace      string            `json:"trace,omitempty"`
 	}{

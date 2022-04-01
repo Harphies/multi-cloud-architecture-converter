@@ -1,0 +1,10 @@
+cc.auto.tfvars
+
+.terraform.tfstate.lock.info 
+.terraform 
+terraform.tfstate 
+terraform.tfstate.backup 
+kubeconfig_*
+kubeconfig.yaml 
+dev.auto.tfvars
+aws-auth.yaml

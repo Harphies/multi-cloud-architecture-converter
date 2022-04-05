@@ -17,5 +17,5 @@ go mod tidy
 got get github.com/julienschmidt/httprouter
 go get github.com/felixge/httpsnoop
 go get github.com/tomasen/realip
-go get 
+go get golang.org/x/time/rate
 ```
